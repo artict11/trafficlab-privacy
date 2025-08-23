@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Политика конфиденциальности — TrafficLab Cleaner</title>
+  <meta name="description" content="Политика конфиденциальности расширения TrafficLab Cleaner для Google Chrome.">
+  <style>
+    :root { --bg:#ffffff; --fg:#111827; --muted:#6b7280; --accent:#2563eb; }
+    *{box-sizing:border-box}
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); line-height:1.6;}
+    header { padding:48px 20px 16px; text-align:center; border-bottom:1px solid #eee;}
+    h1 { margin:0 0 8px; font-size: clamp(24px, 4vw, 36px); }
+    .subtitle { color: var(--muted); margin:0; }
+    main { max-width: 860px; margin: 0 auto; padding: 28px 20px 64px; }
+    h2 { margin-top: 32px; font-size: 22px; }
+    p, li { font-size: 16px; }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#f6f8fa; padding:0 4px; border-radius:4px;}
+    footer { max-width: 860px; margin: 0 auto 48px; padding: 0 20px; color: var(--muted); font-size: 14px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Политика конфиденциальности</h1>
+    <p class="subtitle">TrafficLab Cleaner</p>
+    <p class="subtitle">Дата вступления в силу: <span class="mono">23.08.2025</span></p>
+  </header>
+  <main>
+    <h2>1. Общие положения</h2>
+    <p>Мы уважаем конфиденциальность пользователей и стремимся к прозрачной работе расширения <strong>TrafficLab Cleaner</strong>. Расширение предназначено исключительно для упрощения работы с интерфейсом Яндекс.Директ и <strong>не собирает, не хранит и не передаёт</strong> персональные данные третьим лицам.</p>
+
+    <h2>2. Какие данные обрабатывает расширение</h2>
+    <ul>
+      <li>Обрабатываются только данные на открытой вкладке браузера с интерфейсом Яндекс.Директ для локальной фильтрации и выделения площадок РСЯ.</li>
+      <li>Расширение не имеет доступа к переписке, паролям, платёжным данным или другим сайтам.</li>
+    </ul>
+
+    <h2>3. Хранение данных</h2>
+    <ul>
+      <li>Для удобства работы расширение может сохранять локальные настройки пользователя (например, выбранные фильтры) с помощью Chrome Storage.</li>
+      <li>Данные сохраняются только на устройстве пользователя и <strong>не</strong> передаются на удалённые серверы.</li>
+    </ul>
+
+    <h2>4. Передача данных третьим лицам</h2>
+    <ul>
+      <li>Расширение не передаёт и не продаёт данные пользователей третьим лицам.</li>
+      <li>Сторонние рекламные, аналитические и трекинговые сервисы в расширение не интегрированы.</li>
+    </ul>
+
+    <h2>5. Доступ к хостам</h2>
+    <ul>
+      <li>Доступ предоставляется исключительно к страницам Яндекс.Директ (<span class="mono">https://direct.yandex.ru/*</span> или соответствующим доменам).</li>
+      <li>Это необходимо для корректной работы фильтрации и выделения площадок. Доступ к другим сайтам не осуществляется.</li>
+    </ul>
+
+    <h2>6. Безопасность</h2>
+    <p>Расширение использует официальные API Chrome (<span class="mono">storage</span>, <span class="mono">activeTab</span>, <span class="mono">scripting</span>, <span class="mono">tabs</span>). Все операции выполняются локально в браузере пользователя.</p>
+
+    <h2>7. Контакты</h2>
+    <p>По вопросам политики конфиденциальности и работы расширения пишите на: <a href="mailto:art1ctmi@gmail.com">art1ctmi@gmail.com</a>.</p>
+  </main>
+  <footer>
+    <p>© <span id="year"></span> TrafficLab. Все права защищены.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
