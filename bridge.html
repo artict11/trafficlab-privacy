@@ -1,13 +1,14 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>Auth bridge</title>
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <style>
   body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
   .card{padding:24px;border:1px solid #eee;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.05)}
 </style>
 <div class="card" id="msg">Обрабатываем токен…</div>
 <script>
-  // НИЧЕГО не отправляем на сервер. Токен берём из hash фрагмента.
   const el = document.getElementById('msg');
   const h = location.hash || '';
   const token = h.startsWith('#token=') ? decodeURIComponent(h.slice(7)) : '';
@@ -15,9 +16,9 @@
     el.textContent = 'Токен не найден. Откройте страницу из кнопки в боте.';
   } else {
     el.textContent = 'Готово! Можно закрыть вкладку.';
-    // Контент-скрипт расширения тоже прочитает hash, но на всякий случай пошлём postMessage
-    window.postMessage({ type: 'TG_TOKEN', token }, '*');
-    // Чуть-чуть «замаскируем» токен в адресной строке
+    // Отправляем только в свой origin
+    window.postMessage({ type: 'TG_TOKEN', token }, location.origin);
+    // Скрываем токен в адресной строке
     history.replaceState({}, '', location.pathname);
   }
 </script>
