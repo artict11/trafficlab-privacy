@@ -12,13 +12,29 @@
   const el = document.getElementById('msg');
   const h = location.hash || '';
   const token = h.startsWith('#token=') ? decodeURIComponent(h.slice(7)) : '';
+
   if (!token) {
     el.textContent = 'Токен не найден. Откройте страницу из кнопки в боте.';
   } else {
     el.textContent = 'Готово! Можно закрыть вкладку.';
-    // Отправляем только в свой origin
-    window.postMessage({ type: 'TG_TOKEN', token }, location.origin);
-    // Скрываем токен в адресной строке
-    history.replaceState({}, '', location.pathname);
+
+    // Контент-скрипт расширения подключается асинхронно и может подписаться
+    // на message ПОЗЖЕ, чем мы отправим токен. postMessage не буферизуется,
+    // поэтому шлём его многократно ~12 секунд, чтобы поздний слушатель поймал.
+    const send = () => {
+      try { window.postMessage({ type: 'TG_TOKEN', token }, location.origin); } catch (e) {}
+    };
+    send();
+    let ticks = 0;
+    const iv = setInterval(() => {
+      send();
+      if (++ticks >= 48) clearInterval(iv); // 48 * 250ms ≈ 12s
+    }, 250);
+
+    // Не стираем #token сразу: контент-скрипт также умеет читать его из hash.
+    // Даём ему время (15 c), затем прячем токен из адресной строки.
+    setTimeout(() => {
+      try { history.replaceState({}, '', location.pathname); } catch (e) {}
+    }, 15000);
   }
 </script>
